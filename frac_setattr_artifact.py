@@ -1,3 +1,12 @@
+# I explored a few things with __setattr__ here but
+# scrapped the idea later as it wasn't really practical
+# In this version, everytime the numerator and denominator
+# attributes are "manually" changed using self.numerator = new_numerator,
+# for example, they're reduced to the simplest form before assignment
+
+# I liked my implementation of this, so I decided to keep the program
+# as an artifact. I will probably (definitely) remove this in the final version
+
 # A class to implement fractions
 
 import math
