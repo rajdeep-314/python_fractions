@@ -1,4 +1,4 @@
-from frac_testing import frac
+from frac_latest import frac
 
 x = frac('0.1_6...', '6')
 print(x)
