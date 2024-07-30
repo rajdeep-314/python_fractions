@@ -5,7 +5,7 @@
 # for example, they're reduced to the simplest form before assignment
 
 # I liked my implementation of this, so I decided to keep the program
-# as an artifact. I will probably (definitely) remove this in the final version
+# as an artifact. I will probably remove this in the final version
 
 # A class to implement fractions
 
