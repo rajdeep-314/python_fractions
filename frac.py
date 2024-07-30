@@ -1,8 +1,3 @@
-# New in this version :
-# 1. Fractions with equivalent numerators and denominators share the same memory address for efficiency
-# 2. Support for an optional negative sign for string inputs
-# 3. Different __str__ and __repr__ definitions
-
 # A class to implement fractions
 
 import math
@@ -28,6 +23,9 @@ Constructor:
         You can define 2/3 with the following calls (among others):
             frac(2, 3)
             frac('2/3')
+            frac('0.6...')
+            frac('0.1_3...')*1/frac('0.2')
+            frac(3, frac('2.0')).reciprocal()
             frac('-2/3', -1)
             frac('2/3', 1.0)
             frac('2/3', '1')
@@ -37,6 +35,7 @@ Constructor:
             frac('-0.6...', '1/-1')'''
 
     # Note : _instance_space might cause problems with inheritence
+    # Stores all current instances
     _instance_space = {}
     _latest_a = 0
     _latest_b = 0
@@ -53,6 +52,18 @@ Constructor:
     _t4 = re.compile(r'-{0,1}\d+\.\d+_\d+\.{3}')
 
     max_repeating_digits = 2000             # Max repeating digits allowed
+
+    # Empties _instance_space
+    # This does NOT remove the instances from
+    # memory. Just empties the dictionary that
+    # held references to them.
+    # For example, this code will work
+    # x = frac(1, 2)
+    # frac.clear_instance_space()
+    # print(x)
+    @classmethod
+    def clear_instance_space(cls):
+        cls._instance_space.clear()
 
     @staticmethod
     def _expression_match(string, expr):         # Returns if the string in it's entirety matches expr
@@ -273,7 +284,7 @@ Constructor:
  
     def __repr__(self):
         if self._repr is None:
-            self._repr = "Fraction " + str(self._numerator) + " by " + str(self._denominator)
+            self._repr = "Fraction: " + str(self._numerator) + " by " + str(self._denominator)
         return self._repr
 
     @staticmethod
@@ -310,6 +321,12 @@ Constructor:
         other = self._try_conversion(other)
         return frac(self._numerator*other._denominator + self._denominator*other._numerator, self._denominator*other._denominator)
 
+    def __sub__(self, other):
+        return self + (-other)
+    
+    def __rsub__(self, other):
+        return other + (-self)
+
     def __mul__(self, other):       # Implements a * b
         other = self._try_conversion(other)
         return frac(self._numerator*other._numerator, self._denominator*other._denominator)
@@ -329,6 +346,9 @@ Constructor:
         if self._float is None:
             self._float = self._float_repr()
         return self._float
+
+    def __bool_(self):
+        return bool(self.numerator)
 
     def __truediv__(self, other):       # Implements a / b
         other = self._try_conversion(other)
