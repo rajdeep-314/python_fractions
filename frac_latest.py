@@ -1,6 +1,7 @@
 # New in this version :
 # 1. Fractions with equivalent numerators and denominators share the same memory address for efficiency
 # 2. Support for an optional negative sign for string inputs
+# 3. Different __str__ and __repr__ definitions
 
 # A class to implement fractions
 
@@ -195,6 +196,7 @@ Constructor:
             self._decimal = None
             self._float = None
             self._repr = None
+            self._str = None
 
     @property
     def numerator(self):
@@ -263,6 +265,11 @@ Constructor:
             if repeating_cycles == 0:
                 repeating_cycles = 1
             return float(parts[0] + "." + parts[1] + parts[2]*repeating_cycles)
+
+    def __str__(self):
+        if self._str is None:
+            self._str = str(self._numerator) + '/' + str(self._denominator)
+        return self._str
  
     def __repr__(self):
         if self._repr is None:
@@ -339,4 +346,3 @@ Constructor:
 
     def __rpow__(self, other):      # Implements b**a
         return other ** float(self)
-
