@@ -209,4 +209,4 @@ Use frac.max_repeating_digits to change
 `frac.py` has the latest version of the program
 `frac_setattr_artifact.py` is what the program looked like at a certain stage where I thought of defining a `__setattr__` method to work around some issues
 `testing.py` is a basic showcase of some operations with `frac` objects
-`examples.py` has code related to the [examples](link here) above, among a few others
+`examples.py` has code related to the [examples](https://github.com/rajdeep-314/python_fractions/tree/main#examples) above, among a few others
