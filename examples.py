@@ -31,7 +31,7 @@ clear()
 # pi
 print("> Pi summation\n")
 
-print("Processing...")
+print("Processing...")              # It usually takes a few seconds
 my_pi = 0
 for i in range(10000):
     my_pi += frac((-1)**i, 2*i+1)
