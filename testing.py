@@ -1,4 +1,4 @@
-from frac_latest import frac
+from frac import *
 
 x = frac('0.1_6...', '6')
 print(x)
@@ -15,4 +15,3 @@ print(x > frac(1, 37))
 print(0.5*x <= 0.1)
 print()
 print(frac(1, 6) == '0.1_6...')
-
