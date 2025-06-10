@@ -1,6 +1,6 @@
 # Fractions
 
-A data type to simulate fractions in Python
+A data type to implement fractions in Python
 <br><br>
 
 ## Origin
